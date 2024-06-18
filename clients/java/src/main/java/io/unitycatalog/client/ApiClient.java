@@ -207,7 +207,8 @@ public class ApiClient {
   }
 
   protected String getDefaultBaseUri() {
-    return "http://localhost:8080/api/2.1/unity-catalog";
+    String serverPort = System.getenv("UNITY_CATALOG_SERVER_PORT");
+    return String.format("http://localhost:%d/api/2.1/unity-catalog", serverPort);
   }
 
   protected HttpClient.Builder createDefaultHttpClientBuilder() {

@@ -28,9 +28,10 @@ public class UnityCatalogServer {
 
   Server server;
   private static final String basePath = "/api/2.1/unity-catalog/";
+  private static final int serverPort = Integer.valueOf(System.getenv("UNITY_CATALOG_SERVER_PORT"));
 
   public UnityCatalogServer() {
-    new UnityCatalogServer(8080);
+    new UnityCatalogServer(serverPort);
   }
 
   public UnityCatalogServer(int port) {
@@ -75,7 +76,7 @@ public class UnityCatalogServer {
   }
 
   public static void main(String[] args) {
-    int port = 8080;
+    int port = serverPort;
     if (args.length > 0) {
       port = Integer.parseInt(args[0]);
     }
@@ -90,7 +91,7 @@ public class UnityCatalogServer {
   }
 
   public void start() {
-    LOGGER.info("Starting server...");
+    LOGGER.info("Starting server on port {}...", serverPort);
     server.start().join();
   }
 
